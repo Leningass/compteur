@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Mon compteur Flutter'),
     );
   }
 }
@@ -64,7 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      //_counter++;
+      _counter += 2;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
     });
   }
 
@@ -115,11 +122,24 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end, // Place les boutons en bas
+        crossAxisAlignment:
+            CrossAxisAlignment.end, // Aligne les boutons à droite
+        children: [
+          FloatingActionButton(
+            onPressed: _incrementCounter, // Bouton pour incrémenter
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ),
+          SizedBox(height: 10), // Ajoute un espace entre les boutons
+          FloatingActionButton(
+            onPressed: _decrementCounter, // Bouton pour décrémenter
+            tooltip: 'Decrement',
+            child: Icon(Icons.remove),
+          ),
+        ],
+      ),
     );
   }
 }
